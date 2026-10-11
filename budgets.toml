@@ -1,0 +1,90 @@
+schema_version = 2
+status = "proposed-until-task-specific-pilot"
+# Independent ledgers/credentials/leases; no transfer between tasks.
+
+[pricing]
+# Add gpu_hourly_usd only after an actual Hot Aisle MI355X quote.
+# MI300X public pricing is not an acceptable substitute.
+provider = "Hot Aisle"
+gpu = "AMD Instinct MI355X"
+status = "quote-required"
+
+[tasks.benchmark-design]
+benchmark_owner = "candidate"
+suite_wall_budget_minutes = 180.0
+active_hours_min = 6
+active_hours_max = 10
+calendar_days = 7
+
+[tasks.benchmark-design.candidate]
+api_usd = 50.0
+gpu_hours = 12.0
+gpus_at_once = 1
+cpu_build_core_hours = 25.0
+artifact_storage_gib = 50.0
+final_reserve_gpu_hours = 4.0
+
+[tasks.benchmark-design.organizer]
+grading_gpu_hours = 4.0
+
+[tasks.harness-design]
+benchmark_owner = "organizer"
+evaluation_owner = "organizer"
+evaluation_mode = "offline-black-box-after-submission"
+active_hours_min = 24
+active_hours_max = 40
+calendar_days = 14
+
+[tasks.harness-design.candidate]
+api_usd = 200.0
+gpu_hours = 64.0
+gpus_at_once = 1
+cpu_build_core_hours = 100.0
+artifact_storage_gib = 250.0
+final_reserve_gpu_hours = 8.0
+
+[tasks.harness-design.organizer]
+grading_gpu_hours = 8.0
+
+# Official workload/phase settings are private organizer materials, not candidate inputs.
+# Candidates budget their own development measurements within the allowance above.
+
+[tasks.compute-quant]
+evaluation_owner = "organizer"
+requires_gpu = false
+active_hours_min = 8
+active_hours_max = 12
+calendar_days = 7
+input_status = "synthetic-demo-only-real-pack-required-before-release"
+
+[tasks.compute-quant.candidate]
+api_usd = 50.0
+gpu_hours = 0.0
+gpus_at_once = 0
+cpu_build_core_hours = 20.0
+artifact_storage_gib = 2.0
+final_reserve_gpu_hours = 0.0
+
+[tasks.compute-quant.organizer]
+grading_gpu_hours = 0.0
+api_usd = 0.0
+
+[tasks.puzzle-design]
+evaluation_owner = "organizer"
+requires_gpu = false
+author_wall_minutes = 20
+solver_wall_minutes = 20
+solver_runs = 1
+solver_profile_status = "organizer-must-pin-Astra-model-agent-tools-and-limits"
+
+[tasks.puzzle-design.candidate]
+api_usd = 5.0
+gpu_hours = 0.0
+gpus_at_once = 0
+cpu_build_core_hours = 1.0
+artifact_storage_gib = 0.1
+final_reserve_gpu_hours = 0.0
+
+[tasks.puzzle-design.organizer]
+grading_gpu_hours = 0.0
+api_usd = 20.0 # Proposed cap; premature exhaustion is not puzzle-resistance evidence.

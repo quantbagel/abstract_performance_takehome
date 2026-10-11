@@ -1,0 +1,50 @@
+{
+  "schema_version": 2,
+  "task": "harness-design",
+  "status": "template-not-a-submission",
+  "image": "REPLACE_WITH_REGISTRY_REFERENCE@sha256:REPLACE_WITH_64_HEX_DIGEST",
+  "platform": "linux/amd64",
+  "source": {
+    "repository": "REPLACE_WITH_SOURCE_REPOSITORY",
+    "commit": "REPLACE_WITH_FULL_SOURCE_COMMIT",
+    "dockerfile": "tasks/harness-design/Dockerfile",
+    "build_command": "docker build --platform linux/amd64 -f tasks/harness-design/Dockerfile -t candidate .",
+    "engine_source_revision": "REPLACE_WITH_VERIFIABLE_LLMD_SOURCE_REVISION",
+    "patches": [],
+    "provenance_path": "artifacts/harness-design/build-provenance.json"
+  },
+  "model": {
+    "repository": "Qwen/Qwen3.6-27B",
+    "revision": "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9"
+  },
+  "agent_harness": {
+    "base_package": "@earendil-works/pi-coding-agent",
+    "base_version": "1.0.0",
+    "base_profile": "plain-pi-1.0",
+    "entrypoint": "tasks/harness-design/harness/run.py",
+    "provenance_path": "artifacts/harness-design/agent-provenance.json"
+  },
+  "integrity": {
+    "starter_commit": "REPLACE_WITH_ORGANIZER_PROVIDED_STARTER_COMMIT",
+    "command": "python -B -m tools.check_integrity --base takehome-start",
+    "report": "artifacts/harness-design/integrity.txt"
+  },
+  "evaluation": {
+    "owner": "organizer",
+    "mode": "offline-black-box-after-submission"
+  },
+  "development_benchmark": {
+    "owner": "candidate",
+    "config": "tasks/harness-design/harness/development-benchmark.json"
+  },
+  "runtime": {
+    "args": ["--io-impl=zio", "--model=/models/model"],
+    "environment": {}
+  },
+  "evidence": {
+    "experiment_log": "tasks/harness-design/harness/results.tsv",
+    "report": "tasks/harness-design/NOTES.md",
+    "development_reports": [],
+    "agent_transcripts": []
+  }
+}

@@ -1,0 +1,21 @@
+.venv/
+__pycache__/
+.ruff_cache/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+results/
+artifacts/
+.env
+.env.*
+models/
+.DS_Store
+.private/
+# Task 4's worked answer and evaluation bundle must not enter public fork history.
+# Ignore rules do not protect files that are already tracked.
+tasks/puzzle-design/solution.json
+tasks/puzzle-design/SOLUTION.md
+tasks/puzzle-design/verify.py
+tasks/puzzle-design/REPORT.md
+tasks/puzzle-design/submission.json

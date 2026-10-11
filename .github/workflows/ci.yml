@@ -1,0 +1,58 @@
+name: CPU checks
+
+on:
+  push:
+    branches: [main, 'launch/**']
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cpu-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  submission-source:
+    name: Fork submission policy
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      # Metadata only: no checkout, secret, write token, or candidate code execution.
+      - name: Require a fork for non-owner pull requests
+        env:
+          HEAD_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name }}
+          BASE_REPOSITORY: ${{ github.repository }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
+        run: |
+          if [[ "$HEAD_REPOSITORY" == "$BASE_REPOSITORY" && "$PR_AUTHOR" != "$REPOSITORY_OWNER" ]]; then
+            echo 'Candidates must submit from their own fork; upstream branches are organizer-only.'
+            exit 1
+          fi
+
+  checks:
+    name: CPU checks (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.11', '3.13']
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+        with:
+          version: '0.9.27'
+          enable-cache: false
+      - run: uv sync --frozen --extra dev --python '${{ matrix.python }}'
+      - run: uv run --frozen ruff check .
+      - run: uv run --frozen python -m unittest discover -s tests -v
+      - run: uv build
+
+# Public fork code runs only on ephemeral GitHub-hosted runners without secrets.
+# Never change this to pull_request_target + checkout of candidate code, or use a
+# privileged/self-hosted grading runner. Passing CI is not an official grade.

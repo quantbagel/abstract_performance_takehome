@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "task": "compute-quant",
+  "status": "template-not-a-submission",
+  "source": {
+    "repository": "REPLACE_WITH_SOURCE_REPOSITORY",
+    "commit": "REPLACE_WITH_FULL_SOURCE_COMMIT"
+  },
+  "inputs": {
+    "case": "tasks/compute-quant/data/demo-case.json",
+    "input_pack_digest": "REPLACE_WITH_ORGANIZER_INPUT_PACK_DIGEST",
+    "kind": "synthetic-demo-not-market-data"
+  },
+  "model": {
+    "entrypoint": "tasks/compute-quant/research/run.py",
+    "configuration": "REPLACE_WITH_DECLARED_MODEL_CONFIGURATION"
+  },
+  "evidence": {
+    "report": "tasks/compute-quant/REPORT.md",
+    "curve": "REPLACE_WITH_OUTPUT_CURVE_CSV",
+    "reservation_valuation": "REPLACE_WITH_OUTPUT_VALUATION_JSON",
+    "tests": "REPLACE_WITH_TEST_PATH"
+  }
+}

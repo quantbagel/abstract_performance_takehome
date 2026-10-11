@@ -1,0 +1,31 @@
+{
+  "schema_version": 2,
+  "task": "benchmark-design",
+  "status": "template-not-a-submission",
+  "source": {
+    "repository": "REPLACE_WITH_SOURCE_REPOSITORY",
+    "commit": "REPLACE_WITH_FULL_SOURCE_COMMIT"
+  },
+  "suite": {
+    "entrypoint": "tasks/benchmark-design/suite/evaluate.py",
+    "workload": "tasks/benchmark-design/suite/workload.json",
+    "tests": "tasks/benchmark-design/suite/tests",
+    "run_wall_budget_minutes": 180.0
+  },
+  "fixed_environment": {
+    "baseline_lock": "baseline/lock.json",
+    "measurement_harness_digest": "REPLACE_WITH_ORGANIZER_SUPPLIED_DIGEST",
+    "agent_harness_profile": "enhanced-pi-1.0",
+    "agent_harness_release_digest": "REPLACE_WITH_ORGANIZER_SUPPLIED_AGENT_HARNESS_DIGEST"
+  },
+  "integrity": {
+    "starter_commit": "REPLACE_WITH_ORGANIZER_PROVIDED_STARTER_COMMIT",
+    "command": "python -B -m tools.check_integrity --base takehome-start",
+    "report": "artifacts/benchmark-design/integrity.txt"
+  },
+  "evidence": {
+    "report": "tasks/benchmark-design/DESIGN.md",
+    "validation_reports": [],
+    "compute_report": "REPLACE_WITH_MEASURED_COMPUTE_REPORT"
+  }
+}

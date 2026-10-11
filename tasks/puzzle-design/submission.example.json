@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "task": "puzzle-design",
+  "status": "template-not-a-submission",
+  "source": {
+    "repository": "REPLACE_WITH_SOURCE_REPOSITORY",
+    "commit": "REPLACE_WITH_FROZEN_SOURCE_IDENTITY"
+  },
+  "public": {
+    "statement": "tasks/puzzle-design/puzzle.md",
+    "answer_format": "REPLACE_WITH_EXPLICIT_ANSWER_FORMAT"
+  },
+  "private": {
+    "known_answer": "tasks/puzzle-design/solution.json",
+    "worked_solution": "tasks/puzzle-design/SOLUTION.md",
+    "verifier": "tasks/puzzle-design/verify.py"
+  },
+  "protocol": {
+    "author_wall_minutes": 20,
+    "solver_wall_minutes": 20,
+    "final_answer_submissions": 1,
+    "astra_profile_digest": "REPLACE_WITH_ORGANIZER_PINNED_PROFILE_DIGEST",
+    "author_start_receipt": "REPLACE_WITH_ORGANIZER_RECEIPT",
+    "submission_receipt": "REPLACE_WITH_ORGANIZER_RECEIPT"
+  },
+  "evidence": {
+    "report": "tasks/puzzle-design/REPORT.md",
+    "author_tests": [],
+    "organizer_solver_result": null
+  }
+}

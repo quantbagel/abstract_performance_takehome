@@ -1,0 +1,25 @@
+[project]
+name = "abstract-performance-takehome"
+version = "0.1.0"
+description = "Authoring toolkit for a ZML/LLMD MI355X performance take-home"
+requires-python = ">=3.11"
+dependencies = [
+  "httpx>=0.28,<0.29",
+  "huggingface-hub>=0.35,<2",
+]
+
+[project.optional-dependencies]
+dev = ["ruff>=0.12,<1"]
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["benchmarks", "tools"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
